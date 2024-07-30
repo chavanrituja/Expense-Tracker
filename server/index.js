@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 import { postSignup,postLogin } from './controllers/user.js';
-import { postTransaction, getTransaction } from './controllers/transaction.js';
+import { postTransaction, getTransaction, deleteTransaction } from './controllers/transaction.js';
 
 const connectDB = async () => {
     const conn = await mongoose.connect(process.env.MONGODB_URL)
@@ -30,6 +30,7 @@ app.post("/signup", postSignup)
 app.post("/login", postLogin)
 app.post("/transaction", postTransaction)
 app.get("/transaction", getTransaction)
+app.get("/transaction/:id", deleteTransaction)
 
 const PORT = process.env.PORT || 5000;
 

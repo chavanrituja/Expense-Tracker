@@ -42,7 +42,6 @@ const getTransaction = async (req, res) => {
             data: null
         })
     }
-
     const transaction = await Transaction.find({ user: userId })
 
     res.json({
@@ -50,6 +49,19 @@ const getTransaction = async (req, res) => {
         message: `Transaction fetched successfully`,
         data: transaction
     })
-}
+}    
+    
+     const deleteTransaction = async(req, res) => {
+        const {id} = req.params;
 
-export { postTransaction, getTransaction }
+        await Transaction.deleteOne({_id: id});
+
+        res.json({
+            success: true,
+            message: `Transaction deleted successfully`,
+            data: null 
+        })
+    }
+
+
+export { postTransaction, getTransaction, deleteTransaction }
