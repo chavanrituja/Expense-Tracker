@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import toast, {Toaster} from 'react-hot-toast'
 import axios from 'axios'
-import TransactionCard from '../../components/TransactionCard/TransactionCard.js'
+import TransactionCard from '../../components/TransactionCard/TransactionCard'
 import ImgAdd from "./add.png"
 import { Link } from 'react-router-dom'
 
@@ -30,7 +30,7 @@ function Home() {
       }
       toast.loading('Loading transactions...')
   
-      const response = await axios.get(`${process.env.REACT_APP_URL}/transactions?userId=${user._id}`)
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/transactions?userId=${user._id}`)
   
       const allTransactions = response.data.data
       toast.dismiss()
